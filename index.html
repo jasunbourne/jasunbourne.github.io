@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <title>NBA Shooting Data</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -12634,7 +12633,7 @@ Name: seconds, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.1-Basic-NBA-Statistics">3.1 Basic NBA Statistics<a class="anchor-link" href="#3.1-Basic-NBA-Statistics">&#182;</a></h3><p>Let's first look at some basic statics regarding the players with the highest field goal percentage. This will help us become more comfortable using dataframes and using the groupby method. We can groupby player name to get each players total made and missed field goals and then easily calculate their field goal percentage. By using the <em>size()</em> method, we get the counts for each players made and missed since we are grouping by both player_name and SHOT_RESULT.</p>
+<h3 id="3.1-Basic-NBA-Statistics">3.1 Basic NBA Statistics<a class="anchor-link" href="#3.1-Basic-NBA-Statistics">&#182;</a></h3><p>Let's first look at some basic statics regarding the players with the highest field goal percentage. This will help us become more comfortable using dataframes and using the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html"><em>groupby()</em></a>. We can groupby player name to get each players total made and missed field goals and then easily calculate their field goal percentage. By using the <em>size()</em> method, we get the counts for each players made and missed since we are grouping by both player_name and SHOT_RESULT.</p>
 
 </div>
 </div>
@@ -12828,7 +12827,7 @@ Name: seconds, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.2-Finding-trends-in-the-data">3.2 Finding trends in the data<a class="anchor-link" href="#3.2-Finding-trends-in-the-data">&#182;</a></h3><p>Now we are going to see if we can find any interesting trends in our data by doing data visualization as well as looking at statistical information.</p>
+<h3 id="3.2-Finding-trends-in-the-data">3.2 Finding trends in the data<a class="anchor-link" href="#3.2-Finding-trends-in-the-data">&#182;</a></h3><p>Now we are going to see if we can find any interesting trends in our data by doing data visualization and stastical analysis.</p>
 <p>Remember the shot type column we added in section 2? Well, now we can plot it to see the distribution of shots players take in the NBA.</p>
 
 </div>
@@ -14049,7 +14048,7 @@ OSpeIiISOf8fZfOgm2pT9BwAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.3-Visualizing-Shooting-Data">3.3 Visualizing Shooting Data<a class="anchor-link" href="#3.3-Visualizing-Shooting-Data">&#182;</a></h3><p>In this section we are going to do some more advanced data visualization. In order to do that, we are going to need a new data set that contains the location of where a shot was taken. I had to create this data set and if you would like to see how I accomplished that, please see the <a href="#Appendix">Appendix</a>.</p>
+<h3 id="3.3-Visualizing-Shooting-Data">3.3 Visualizing Shooting Data<a class="anchor-link" href="#3.3-Visualizing-Shooting-Data">&#182;</a></h3><p>In this section we are going to do some more advanced data visualization. In order to do that, we are going to need a new data set that contains the location of where a shot was taken. Please reference the data set down below. If you would like to learn more about how I created the set, please see the <a href="#Appendix">Appendix</a>.</p>
 
 </div>
 </div>
@@ -19886,6 +19885,9 @@ AABDCR0AAMBQv2sKBDVDnzgXAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Did you ever wonder if NBA players shoot better or worse in the last two minutes of the game compared to the rest of it? Well we can use our EDA tools to help us see. Lets create two new dataframes. One will contain all the shots that occured during the last two minutes of game, and the other will contain the remaining shots that occured before the last two minutes of the game.</p>
+<p>Note:<br>
+eog = end of game<br>
+rog = rest of game</p>
 
 </div>
 </div>
@@ -22571,20 +22573,25 @@ kiRJkiRJklqQHQCSJEmSJEmSJLUgOwAkSZIkSZIkSWpBdgBIkiRJkiRJktSC7ACQJEmSJEmSJKkF
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Hypothesis-Testing">4. Hypothesis Testing<a class="anchor-link" href="#4.-Hypothesis-Testing">&#182;</a></h2><p>Let us try and make a hypothesis we can test now.</p>
+<h2 id="4.-Hypothesis-Testing">4. Hypothesis Testing<a class="anchor-link" href="#4.-Hypothesis-Testing">&#182;</a></h2><p>We can use statistics to test if the NBA shooting averages from the last two minutes of the game are different from the rest of the game, when players are shooting from more than 18 feet away. More specifically, hypothesis testing. If you are unfamiliar with hypothesis testing you can read more about it <a href="https://www.investopedia.com/terms/h/hypothesistesting.asp">here</a>. The specific kind of hypothesis test we want to run is going to be a t test which tests if two means are equal. <a href="https://www.investopedia.com/terms/t/t-test.asp">Here is more information about t tests</a>.</p>
+<p>Our null hypothesis is going to be the shooting percentages are equal and our alternative hypothesis is going to be the shooting percentages are different.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eog_samp</span> <span class="o">=</span> <span class="n">eog</span><span class="o">.</span><span class="n">SHOT_MADE_FLAG</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">rog_samp</span> <span class="o">=</span> <span class="n">rog</span><span class="o">.</span><span class="n">SHOT_MADE_FLAG</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#take our samples</span>
+<span class="n">eog_samp</span> <span class="o">=</span> <span class="n">eog</span><span class="o">.</span><span class="n">SHOT_MADE_FLAG</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=.</span><span class="mi">333</span><span class="p">)</span>
+<span class="n">rog_samp</span> <span class="o">=</span> <span class="n">rog</span><span class="o">.</span><span class="n">SHOT_MADE_FLAG</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=.</span><span class="mi">333</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">eog_samp</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rog_samp</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1">#run the ttest</span>
 <span class="n">tval</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">eog_samp</span><span class="p">,</span><span class="n">rog_samp</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The test statistic is: </span><span class="si">%f</span><span class="s1">. The p-value is: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">tval</span><span class="p">,</span> <span class="n">pval</span><span class="p">))</span>
 </pre></div>
@@ -22603,9 +22610,9 @@ kiRJkiRJklqQHQCSJEmSJEmSJLUgOwAkSZIkSZIkSWpBdgBIkiRJkiRJktSC7ACQJEmSJEmSJKkF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.299
-0.3816
-The test statistic is: -5.152566. The p-value is: 0.000000
+<pre>0.296333002973
+0.383104500381
+The test statistic is: -5.442885. The p-value is: 0.000000
 </pre>
 </div>
 </div>
@@ -22614,173 +22621,24 @@ The test statistic is: -5.152566. The p-value is: 0.000000
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#inputs</span>
-<span class="n">shots_df</span><span class="o">.</span><span class="n">SHOT_RESULT</span> <span class="o">=</span> <span class="n">shots_df</span><span class="o">.</span><span class="n">SHOT_RESULT</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">made</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">missed</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">shots_df</span><span class="o">.</span><span class="n">SHOT_RESULT</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since the p-value is less than 0.05 (our alpha value) we will reject the null hypothesis. That means the two shooting percentages <em>are</em> different. It seems that NBA players shoot a significantly lower percentage shot during the last two minutes of the game when they are shooting from more than 18 feet away.</p>
 
 </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    1
-1    0
-2    0
-3    0
-4    0
-Name: SHOT_RESULT, dtype: int64</pre>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">MinMaxScaler</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">shots_df</span><span class="p">[[</span><span class="s1">&#39;PERIOD&#39;</span><span class="p">,</span> <span class="s1">&#39;SHOT_CLOCK&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span> <span class="s1">&#39;DRIBBLES&#39;</span><span class="p">,</span> <span class="s1">&#39;TOUCH_TIME&#39;</span><span class="p">,</span> <span class="s1">&#39;SHOT_DIST&#39;</span><span class="p">,</span> <span class="s1">&#39;PTS_TYPE&#39;</span><span class="p">,</span> <span class="s1">&#39;CLOSE_DEF_DIST&#39;</span><span class="p">]]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">shots_df</span><span class="p">[</span><span class="s1">&#39;SHOT_RESULT&#39;</span><span class="p">]</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">rescaledX</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Conclusion">5. Conclusion<a class="anchor-link" href="#5.-Conclusion">&#182;</a></h2><p>Players, coaches and analysts in the NBA our always looking for ways to improve players games and make their teams more effective. Analyzing shooting data can really help them. By looking at the points per shot of a player, it can be determined which type of shot is the most effective for that player and what shots they should shoot more of. For the shooting percentages analysis we did, that can be used for defensive purposes when coaches need come up with game plans to stop players like Stephen Curry or Lebron James. We also saw that from our testing, players shoot a lower percentage during the last two minutes of a game.</p>
+<p>This dataset is very rich and there is a lot more interesting questions we can ask. For example, we could use machine learning to predict if shots will go in, we can look at specific players heatmaps, or even find out who the best defenders are. I encourage the reader to download the dataset and do their own experiments.</p>
 
 </div>
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="k">import</span> <span class="n">MLPClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">curry</span><span class="p">[[</span><span class="s1">&#39;PERIOD&#39;</span><span class="p">,</span> <span class="s1">&#39;SHOT_CLOCK&#39;</span><span class="p">,</span> <span class="s1">&#39;DRIBBLES&#39;</span><span class="p">,</span> <span class="s1">&#39;TOUCH_TIME&#39;</span><span class="p">,</span> <span class="s1">&#39;SHOT_DIST&#39;</span><span class="p">,</span> <span class="s1">&#39;CLOSE_DEF_DIST&#39;</span><span class="p">]]</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">rescaledX</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1">#clf = RandomForestClassifier(max_depth=2, random_state=1)</span>
-<span class="c1">#clf.fit(X_train, y_train)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[109]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>MLPClassifier(activation=&#39;relu&#39;, alpha=1e-05, batch_size=&#39;auto&#39;, beta_1=0.9,
-       beta_2=0.999, early_stopping=False, epsilon=1e-08,
-       hidden_layer_sizes=(6, 2), learning_rate=&#39;constant&#39;,
-       learning_rate_init=0.001, max_iter=200, momentum=0.9,
-       nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
-       solver=&#39;lbfgs&#39;, tol=0.0001, validation_fraction=0.1, verbose=False,
-       warm_start=False)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
-        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0.6072687693727374
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#hypthesis testing</span>
-<span class="c1">#compare shooting percentages between game clock under 1 min in 4th quarter and rest of game</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -22877,7 +22735,11 @@ Name: SHOT_RESULT, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Appendix">Appendix<a class="anchor-link" href="#Appendix">&#182;</a></h2>
+<h2 id="Appendix">Appendix<a class="anchor-link" href="#Appendix">&#182;</a></h2><p>This was adapted from <a href="http://www.gregreda.com/2015/02/15/web-scraping-finding-the-api/">http://www.gregreda.com/2015/02/15/web-scraping-finding-the-api/</a> and the data is from <a href="http://stats.nba.com">http://stats.nba.com</a>. Please refer to the first link for more information about API's and scraping the data.</p>
+<p>This section uses requests. To learn more about requests, please refer <a href="http://docs.python-requests.org/en/master/">here</a>.</p>
+<p>The first thing I want to mention is that there was no way to get the shot logs of every player with one API call since one of the parameters of the call was the player id. This parameter was required so I had to get a list of player id's. Since the first dataframe I used already had this information, I just got a unique list of every player id from that dataframe. I then had to iterate through each player id and put it into the API call. I ran into some trouble when calling requests.get() on the stats.nba.com site. It was not returning any data for some reason. The way I fixed this was by adding headers. The headers make the request seem like it is coming from an actual web browser. The NBA site most likely requires these headers inorder for it to return any information.</p>
+<p>Once I had a players shot logs, I converted it to a dataframe and then exported it to a CSV file. I just kept adding each players logs to one CSV file so all the data would be together.</p>
+
 </div>
 </div>
 </div>
@@ -22886,7 +22748,35 @@ Name: SHOT_RESULT, dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get list of unique player ids</span>
+<span class="n">player_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">shots_df</span><span class="o">.</span><span class="n">player_id</span><span class="p">)</span>
+
+<span class="c1"># Iterate through each id</span>
+<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">player_ids</span><span class="p">:</span>
+    <span class="n">shot_chart_url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://stats.nba.com/stats/shotchartdetail?CFID=33&amp;CFPARAMS=2014-15&#39;</span>
+                      <span class="s1">&#39;&amp;ContextFilter=&amp;ContextMeasure=FGA&amp;DateFrom=&amp;DateTo=&amp;GameID=&amp;GameSegment=&#39;</span>
+                      <span class="s1">&#39;&amp;LastNGames=0&amp;LeagueID=00&amp;Location=&amp;MeasureType=Base&amp;Month=0&amp;OpponentTeamID=0&#39;</span>
+                      <span class="s1">&#39;&amp;Outcome=&amp;PaceAdjust=N&amp;PerMode=PerGame&amp;Period=0&amp;PlayerID=</span><span class="si">%s</span><span class="s1">&amp;PlayerPosition=&#39;</span>
+                      <span class="s1">&#39;&amp;PlusMinus=N&amp;Position=&amp;Rank=N&amp;RookieYear=&amp;Season=2014-15&amp;SeasonSegment=&#39;</span>
+                      <span class="s1">&#39;&amp;SeasonType=Regular+Season&amp;TeamID=0&amp;VsConference=&amp;VsDivision=&amp;mode=Advanced&#39;</span>
+                      <span class="s1">&#39;&amp;showDetails=0&amp;showShots=1&amp;showZones=0&#39;</span> <span class="o">%</span><span class="k">id</span>)
+    
+    <span class="c1"># Get the webpage containing the data</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">shot_chart_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36&quot;</span>
+    <span class="p">})</span>
+    
+    <span class="c1"># Grab the headers to be used as column headers for our DataFrame</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resultSets&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;headers&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Grab the shot chart data</span>
+    <span class="n">shots</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resultSets&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;rowSet&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Convert to dataframe</span>
+    <span class="n">shot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">shots</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    
+    <span class="c1"># Export to csv file</span>
+    <span class="n">shot_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;shots.csv&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 </div>
