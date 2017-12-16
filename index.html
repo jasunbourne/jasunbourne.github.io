@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>NBA Shooting Data</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>final_tutorial_nb</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11794,7 +11794,8 @@ div#notebook {
 <ul>
 <li>pandas</li>
 <li>seaborn (for visualization)</li>
-</ul><p>The last thing you need is the dataset which can be found at https://www.kaggle.com/dansbecker/nba-shot-logs/data</p><h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h2><p>Using data science and analytic techniques to come up with a new way to look at NBA shooting data.</p>
+</ul><p>The last thing you need is the dataset which can be found at <a href="https://www.kaggle.com/dansbecker/nba-shot-logs/data">https://www.kaggle.com/dansbecker/nba-shot-logs/data</a></p>
+<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h2><p>Using data science and analytic techniques to come up with a new way to look at NBA shooting data.</p>
 
 </div>
 </div>
@@ -11809,22 +11810,6 @@ div#notebook {
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#look at clutch players</span>
-<span class="c1">#do players shoot better in certain quarters</span>
-<span class="c1">#predicting salaries based on shooting</span>
-<span class="c1">#Data on shots taken during the 2014-2015 season,</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12078,12 +12063,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#tidying data</span>
-<span class="c1">#add shot type for later</span>
-<span class="c1">#get rid of missing data nan</span>
-<span class="c1">#fix shot_clock nan with game clock</span>
-
-<span class="c1">#this will remove, or drop, a column in our dataframe</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#this will remove, or drop, a column in our dataframe</span>
 <span class="n">shots_df</span> <span class="o">=</span> <span class="n">shots_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MATCHUP&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">shots_df</span> <span class="o">=</span> <span class="n">shots_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;GAME_ID&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">shots_df</span> <span class="o">=</span> <span class="n">shots_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;FINAL_MARGIN&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -12236,6 +12216,15 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next piece of code is just going to move the last two columns (player_name and player_id) to the front of the dataframe so it is easier for us to identify which player took the shot.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14397,7 +14386,7 @@ CEpYIiLiCP8PyefWtux4E6sAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Looking at the results, we see that every player in the top 10 shoots over 50% of their shots from behind the 3 point line. That shows that players who can shoot a high percentage shot from behind the 3 point line will be very effective shooters. Kyle Korver is known to be one of the best shooters in the NBA, along with JJ Redick and Stephen Curry. Our analysis prooved those players to be the best as well.</p>
+<p>Looking at the results, we see that every player in the top 10 shoots over 50% of their shots from behind the 3 point line. That shows that players who can shoot a high percentage shot from behind the 3 point line will be very effective shooters. Kyle Korver is known to be one of the best shooters in the NBA, along with JJ Redick and Stephen Curry. Our analysis prooved those players to be the best as well. Based on the numbers, we can say Kyle Korver was the best shooter during the 2014-2015 NBA season.</p>
 
 </div>
 </div>
@@ -22282,7 +22271,7 @@ The test statistic is: -5.442885. The p-value is: 0.000000
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="5.-Conclusion">5. Conclusion<a class="anchor-link" href="#5.-Conclusion">&#182;</a></h2><p>Players, coaches and analysts in the NBA our always looking for ways to improve players games and make their teams more effective. Analyzing shooting data can really help them. By looking at the points per shot of a player, it can be determined which type of shot is the most effective for that player and what shots they should shoot more of. For the shooting percentages analysis we did, that can be used for defensive purposes when coaches need come up with game plans to stop players like Stephen Curry. We also saw that from our testing, players shoot a lower percentage during the last two minutes of a game.</p>
+<h2 id="5.-Conclusion">5. Conclusion<a class="anchor-link" href="#5.-Conclusion">&#182;</a></h2><p>Players, coaches and analysts in the NBA our always looking for ways to improve players games and make their teams more effective. Analyzing shooting data can really help them. By looking at the points per shot of a player, it can be determined which type of shot is the most effective for that player and what shots they should shoot more of. We were able to identify the best shooters as well and found that Kyle Korver was the number one shooter during the 2014-2015 season. We also saw that from our testing, players shoot a lower percentage during the last two minutes of a game.</p>
 <p>This dataset is very rich and there is a lot more interesting questions we can ask. For example, we could use machine learning to predict if shots will go in, we can look at specific players heatmaps, or even find out who the best defenders are. I encourage the reader to download the dataset and do their own experiments.</p>
 
 </div>
